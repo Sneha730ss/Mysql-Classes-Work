@@ -1182,6 +1182,129 @@ select * from payments where payment_date like '%05';
 -- 20.  Select payments payment_mode = online
 select * from payments where (payment_mode) ='online';
 
+-- -------------------------------------------- update queries ------------------------------
+-- 1. Update payment amount for payment_id = 1
+UPDATE Payments SET amount_paid = 55000 WHERE payment_id = 1;
+
+-- 2. Change payment mode for payment_id = 2
+UPDATE Payments SET payment_mode = 'UPI' WHERE payment_id = 2;
+
+-- 3. Update payment date for payment_id = 3
+UPDATE Payments SET payment_date = '2024-06-10' WHERE payment_id = 3;
+
+-- 4. Increase amount_paid by 5000 for payment_id = 4
+UPDATE Payments SET amount_paid = amount_paid + 5000 WHERE payment_id = 4;
+
+-- 5. Change student_id for payment_id = 5
+UPDATE Payments SET student_id = 10 WHERE payment_id = 5;
+
+-- 6. Set payment_mode to 'Online' for all Cash payments
+UPDATE Payments SET payment_mode = 'Online' WHERE payment_mode = 'Cash';
+
+-- 7. Change course_id for payment_id = 1
+UPDATE Payments SET course_id = 111 WHERE payment_id = 1;
+
+-- 8. Give 10% discount (reduce amount_paid) for payment_id = 2
+UPDATE Payments SET amount_paid = amount_paid * 0.9 WHERE payment_id = 2;
+
+-- 9. Change payment_mode to 'Cheque' for payment_id = 4
+UPDATE Payments SET payment_mode = 'Cheque' WHERE payment_id = 4;
+
+-- 10. Add 1000 to all payments made via UPI
+UPDATE Payments SET amount_paid = amount_paid + 1000 WHERE payment_mode = 'UPI';
+
+-- 11. Change payment_date for payment_id = 5
+UPDATE Payments SET payment_date = '2024-06-15' WHERE payment_id = 5;
+
+-- 12. Update course_id for student_id = 1
+UPDATE Payments SET course_id = 120 WHERE student_id = 1;
+
+-- 13. Set amount_paid to 0 for payment_id = 3 
+UPDATE Payments SET amount_paid = 0 WHERE payment_id = 3;
+
+-- 14. Change student_id from 3 to 33
+UPDATE Payments SET student_id = 33 WHERE student_id = 3;
+
+-- 15. Add 2000 to amount_paid where payment_mode is 'Online'
+UPDATE Payments SET amount_paid = amount_paid + 2000 WHERE payment_mode = 'Online';
+
+-- 16. Set all payment_mode to 'Card' for payments over 40000
+UPDATE Payments SET payment_mode = 'Card' WHERE amount_paid > 40000;
+
+-- 17. Update course_id to 106 for payment_id = 2
+UPDATE Payments SET course_id = 106 WHERE payment_id = 2;
+
+-- 18. Change all payment_date to '2024-06-30' for course_id = 105
+UPDATE Payments SET payment_date = '2024-06-30' WHERE course_id = 105;
+
+-- 19. Increase amount_paid by 10% for all payments
+UPDATE Payments SET amount_paid = amount_paid * 1.1;
+
+-- 20. Change payment_mode to 'Net Banking' where it is 'Cheque'
+UPDATE Payments SET payment_mode = 'Net Banking' WHERE payment_mode = 'Cheque';
+
+-- --------------------------------------- alter queries -----------------------------------
+-- 1. Add a new column for payment status
+ALTER TABLE Payments ADD payment_status VARCHAR(20);
+
+-- 2. Add a column for transaction ID
+ALTER TABLE Payments ADD transaction_id VARCHAR(30);
+
+-- 3. Change data type of amount_paid to DECIMAL
+ALTER TABLE Payments MODIFY amount_paid DECIMAL(10,2);
+
+-- 4. Rename column payment_mode to mode_of_payment
+ALTER TABLE Payments RENAME COLUMN payment_mode TO mode_of_payment;
+
+-- 5. Drop the column transaction_id
+ALTER TABLE Payments DROP COLUMN transaction_id;
+
+-- 6. Add a column for remarks or notes
+ALTER TABLE Payments ADD remarks TEXT;
+
+-- 7. Rename column payment_date to date_of_payment
+ALTER TABLE Payments RENAME COLUMN payment_date TO date_of_payment;
+
+-- 8. Drop the column remarks
+ALTER TABLE Payments DROP COLUMN remarks;
+
+-- 9. Add a new column for branch name
+ALTER TABLE Payments ADD branch_name VARCHAR(50);
+
+-- 10. Set default value for payment_status as 'Pending'
+ALTER TABLE Payments ALTER COLUMN payment_status SET DEFAULT 'Pending';
+
+-- 11. Add a column for tax amount
+ALTER TABLE Payments ADD tax_amount DECIMAL(8,2);
+
+-- 12. Modify mode_of_payment to allow 30 characters
+ALTER TABLE Payments MODIFY mode_of_payment VARCHAR(30);
+
+-- 13. Add a column to store payment time
+ALTER TABLE Payments ADD payment_time TIME;
+
+-- 14. Drop column branch_name
+ALTER TABLE Payments DROP COLUMN branch_name;
+
+-- 15. Change student_id to BIGINT type
+ALTER TABLE Payments MODIFY student_id BIGINT;
+
+-- 16. Rename table Payments to StudentPayments
+ALTER TABLE Payments RENAME TO StudentPayments;
+
+-- 17. Rename the table back to Payments
+ALTER TABLE StudentPayments RENAME TO Payments;
+
+-- 18. Change course_id to VARCHAR instead of INT
+ALTER TABLE Payments MODIFY course_id VARCHAR(10);
+
+-- 19. Add a column to store payment method description
+ALTER TABLE Payments ADD method_description VARCHAR(100);
+
+-- 20. Drop the column method_description
+ALTER TABLE Payments DROP COLUMN method_description;
+
+
 -- ------------------------------------------- Delete Queries --------------------------------
 -- 1. Delete payment with ID 5
 DELETE FROM Payments WHERE payment_id = 5;
