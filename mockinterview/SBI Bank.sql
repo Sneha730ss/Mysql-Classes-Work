@@ -1085,7 +1085,33 @@ DELETE FROM Loans WHERE LoanID = '203';
 
 -- 43. Using LIKE operator for Ty starting with 'D'
 SELECT * FROM Loans WHERE Status LIKE 'A%';
+ 
+-- 45. Show all Home loans
+SELECT * 
+FROM Loans 
+WHERE LoanType = 'Home';
 
+-- 46. Show loans with amount more than ₹1,000,000
+SELECT LoanID, LoanType, Amount 
+FROM Loans 
+WHERE Amount > 1000000;
+
+-- 47. Show loans where interest rate is above 10%
+SELECT LoanID, LoanType, InterestRate 
+FROM Loans 
+WHERE InterestRate > 10.0;
+
+-- 48. Count how many loans are there for each loan type
+SELECT LoanType, COUNT(*) AS TotalLoans 
+FROM Loans 
+GROUP BY LoanType;
+
+-- 49. Find average EMI for Car loans
+SELECT AVG(EMI) AS AverageEMI 
+FROM Loans 
+WHERE LoanType = 'Car';
+
+-- 
 
 -- -----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1323,6 +1349,30 @@ DELETE FROM Branches WHERE BranchCode = 'SBI021';
 
 -- 44. Using LIKE operator for Ty starting with 'D'
 SELECT * FROM Branches WHERE City LIKE 'D%';
+
+-- 45. Show all branches in the state of Maharashtra
+SELECT * FROM Branches
+WHERE State = 'Maharashtra';
+
+-- 46. Find the manager of the SBI Mumbai West Branch
+SELECT ManagerName FROM Branches
+WHERE BranchName = 'SBI Mumbai West Branch';
+
+-- 47. List all branch names with their respective cities
+SELECT BranchName, City FROM Branches;
+
+-- 48. Show contact numbers of all branches located in Uttar Pradesh
+SELECT BranchName, Contact FROM Branches
+WHERE State = 'Uttar Pradesh';
+
+-- 49. Count how many branches exist in each state
+SELECT State, COUNT(*) AS TotalBranches
+FROM Branches
+GROUP BY State;
+
+-- 50. Display all branches in cities that start with the letter 'B'
+SELECT * FROM Branches
+WHERE City LIKE 'B%';
 
 -- -----------------------------------------------------------------------------------------------------------------------------------------
 
